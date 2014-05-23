@@ -1,4 +1,6 @@
 body {
+	background-color: grey;
+	width: 80%;
 	margin: auto;
   padding: 50px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,11 +8,30 @@ body {
 
 header {
 	text-align: center;
-	font-size: 80px;
+	font-size: 100px;
 }
 
-#post-head-001,#post-head-002,#post-head-003,#post-head-004,#post-head-005{
+#post-000,#post-001,#post-002,#post-003,#post-004,#post-005,#post-006,#post-007,#post-008,#post-009{
+	text-align: center;
+}
 
+
+#post-head-000,#post-head-001,#post-head-002,#post-head-003,#post-head-004,#post-head-005,#post-head-006,#post-head-007,#post-head-008,#post-head-009{
+background-color: wheat;
+height: auto;
+font-size: 50px;
+text-align: center;
+}
+
+#page_nav{
+	text-align: center;
+	width: 50%;
+}
+#prev_page{
+	float: left;
+}
+#next_page{
+	float: right;
 }
 
 
