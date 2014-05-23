@@ -1,7 +1,18 @@
 body {
+	margin: auto;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+header {
+	text-align: center;
+	font-size: 80px;
+}
+
+#post-head-001,#post-head-002,#post-head-003,#post-head-004,#post-head-005{
+
+}
+
 
 a {
   color: #00B7FF;
