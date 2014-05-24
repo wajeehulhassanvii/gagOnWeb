@@ -1,9 +1,20 @@
 body {
+	text-decoration: inline;
 	background-color: grey;
 	width: 80%;
 	margin: auto;
   padding: 50px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+#postContainer{
+	width: 60%;
+	float: left;
+}
+#selected_post{
+	height: 900px;
+	width: 30%;
+	float: right;
+	background-color: black;
 }
 
 header {
