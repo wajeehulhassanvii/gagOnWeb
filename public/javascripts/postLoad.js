@@ -1,3 +1,11 @@
+$(document).ready(function(){
+        alert("working");
+        console.log("working");
+    });
+
+
+
+
 
     $( document ).ready(function() {
     	var page_num = 1;  //current page number
