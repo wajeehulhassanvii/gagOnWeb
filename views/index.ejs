@@ -91,12 +91,13 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		alert("Range of post is 000-009 for testing purpose");
+		alert("Range of post is 000-019 for testing purpose");
 		var page_num=1;
 	    var new_post_id="img-";
 	    var random_post=0;
 	    var post_img = "#post_img-";
 	    var post_id="#post-00";
+
 
 	$("#next_page").on("click", function(){
 		page_num++;
@@ -105,7 +106,7 @@
     	var max_post_per_page=10;
     	for(var i=0;i<10;i++)
     	{	
-    		random_post=getRandomInt(000,9); // define the range of the post
+    		random_post=getRandomInt(000,19); // define the range of the post
     		
     		post_img=post_img+i;	//id of image to delete
     		post_id=post_id+i;		// id of div in which we append new image
@@ -126,7 +127,6 @@
     		$(post_id).append("<img src='/images/"+new_post_id+".jpg' />"); // append new image
 
     		alert(new_post_id);
-
     		new_post_id="img-";
     		post_img="#post-img-";
     		post_id="#post-00";
