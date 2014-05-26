@@ -20,61 +20,61 @@
 	<br><br><br>
 	<div id="post-000">
 		<span id="post-head-000">This is Post 000</span><br><br>
-		<img src="/images/img-000.jpg">		
+	<div id="post_img-0"></div>	<img src="/images/img-000.jpg">		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-001">
 		<span id="post-head-001">This is Post 001</span><br><br>
-		<img src="/images/img-001.jpg">		
+	<div id="post_img-1">	<img src="/images/img-001.jpg"></div>			
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-002">
 		<span id="post-head-002">This is Post 002</span><br><br>
-		<img src="/images/img-002.jpg">		
+	<div id="post_img-2">	<img src="/images/img-002.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-003">
 		<span id="post-head-003">This is Post 003</span><br><br>
-		<img src="/images/img-003.jpg">		
+	<div id="post_img-3">	<img src="/images/img-003.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-004">
 		<span id="post-head-004">This is Post 004</span><br><br>
-		<img src="/images/img-004.jpg">		
+	<div id="post_img-4">	<img src="/images/img-004.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-005">
 		<span id="post-head-005">This is Post 005</span><br><br>
-		<img src="/images/img-005.jpg">		
+	<div id="post_img-5">	<img src="/images/img-005.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-006">
 		<span id="post-head-006">This is Post 006</span><br><br>
-		<img src="/images/img-006.jpg">		
+	<div id="post_img-6">	<img src="/images/img-006.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 	
 	<div id="post-007">
 		<span id="post-head-007">This is Post 007</span><br><br>
-		<img src="/images/img-007.jpg">		
+	<div id="post_img-7">	<img src="/images/img-007.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-008">
 		<span id="post-head-008">This is Post 008</span><br><br>
-		<img src="/images/img-008.jpg">		
+	<div id="post_img-8">	<img src="/images/img-008.jpg"></div>		
 	</div><hr>
 	<br><br><br><br>
 
 	<div id="post-009">
 		<span id="post-head-009">This is Post 009</span><br><br>
-		<img src="/images/img-009.jpg">		
+	<div id="post_img-9">	<img src="/images/img-009.jpg"></div>		
 	</div><hr>
 <div id="page_nav">
 <button id="prev_page">Previous Page</button><button id="next_page">Next Page</button>
@@ -91,10 +91,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		alert("working");
+		alert("Range of post is 000-009 for testing purpose");
 		var page_num=1;
-	    var post_id="img-";
+	    var new_post_id="img-";
 	    var random_post=0;
+	    var post_img = "#post_img-";
+	    var post_id="#post-00";
 
 	$("#next_page").on("click", function(){
 		page_num++;
@@ -102,19 +104,32 @@
     	var post_num_max=9;    //post number maximum
     	var max_post_per_page=10;
     	for(var i=0;i<10;i++)
-    	{
-    		random_post=getRandomInt(000,999);
+    	{	
+    		random_post=getRandomInt(000,9); // define the range of the post
+    		
+    		post_img=post_img+i;	//id of image to delete
+    		post_id=post_id+i;		// id of div in which we append new image
+
+
+    		// generating new id
     		if(random_post<10&&random_post>-1){
-    			post_id=post_id + "00" + random_post;
+    			new_post_id=new_post_id + "00" + random_post;	
     		}
     		if(random_post<100&&random_post>9){
-    			post_id=post_id + "0" + random_post;
+    			new_post_id=new_post_id + "0" + random_post;
     		}
     		if(random_post<1000&&random_post>100){
-    			post_id=post_id + random_post;
+    			new_post_id=new_post_id + random_post;
     		}
-    		alert(post_id);
-    		post_id="img-";
+
+    		$(post_id + " img:last-child").remove(); // remove image from DOM
+    		$(post_id).append("<img src='/images/"+new_post_id+".jpg' />"); // append new image
+
+    		alert(new_post_id);
+
+    		new_post_id="img-";
+    		post_img="#post-img-";
+    		post_id="#post-00";
     	}
 
 	});
@@ -122,27 +137,8 @@
 	$("#prev_page").on("click", function(){
 		if(page_num>1){
 			page_num--;
-			var post_num_min=0;    //post number minimum
-	    	var post_num_max=9;    //post number maximum
-	    	var max_post_per_page=10;
-
-	    	for(var i=0;i<10;i++)
-	    	{
-	    		random_post=getRandomInt(000,999);
-	    		if(random_post<10&&random_post>-1){
-	    			post_id=post_id + "00" + random_post;
-	    		}
-	    		if(random_post<100&&random_post>9){
-	    			post_id=post_id + "0" + random_post;
-	    		}
-	    		if(random_post<1000&&random_post>100){
-	    			post_id=post_id + random_post;
-	    		}
-	    		alert(post_id);
-	    		post_id="img-";
-	    	}
-	    }
-
+	
+		}
 	});
 
 
