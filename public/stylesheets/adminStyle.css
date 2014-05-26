@@ -1,4 +1,15 @@
 
 #login_info{
 	text-decoration: inline;
+	float: left;
+}
+#log_inout{
+	text-decoration: inline;
+}
+#logout_div{
+	float: right;
+}
+
+#uploadForm{
+	text-align: center;
 }

@@ -4,58 +4,60 @@
 <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/javascripts/jquery-ui-1.10.4.custom.js"></script>
 <link rel='stylesheet' href='/stylesheets/adminStyle.css' />
-   
+<title>
+</title>
+<head>
+</head>
+<body>
+   <div id="log-inout">
 		<div id="login_info">
 	  		<input id='login_email' type="text" placeholder="Email"/>
-			<input id='login_secret_text' type='password' placeholder='Secret Text'/>            
+			   <input id='login_secret_text' type='password' placeholder='Secret Text'/>            
             <input id='login_password' placeholder="Password " type="password"/>
             <button id='login_button'>Login</button>
-        </div>
+    </div>
+    <div id="logout_div">
+    <button id="logout_button">logout</button>
+    </div>
+  </div>
+
+</body>
+
+
 
 <script type="text/javascript">
 
 $(document).ready(function(){
 
 
+$('#logout_button').on('click', function(){
+  $.get('/logging_out');
+});
+
 $('#login_button').on("click",function(){
-var email_in_login = $('#email_in_login').val();
-var password_in_login = $('#password_in_login').val();
+var email_in_login = $('#login_email').val();
+var password_in_login = $('#login_password').val();
 var regrex_of_email = /^[A-Za-z0-9\.\^\-\_]{1,}[@]{1}((yahoo.com)||(gmail.com)||(hotmail.com))$/;
 var login_secret_text = $("#login_secret_text").val();
 
 alert("login button working");
 
 
- $.ajax({
-          url:'/user_logging_in',
-          type:'GET',
-          success: function(res){
-            if(res=="working"){
-              $(body).append("button worked");
-            }
-          }
-
-          
-        });
+// document.getElementById("btnPlaceOrder").disabled = true;
 
 
-// if(email_in_login.match(regrex_of_email) && (email_in_login !=" ") && (password_in_login != " "))
-// {
-// 	if(email_in_login=="gagOnWeb@gmail.com"){
+// 	if(email_in_login=="gagonweb@gmail.com"){
 // 		if(password_in_login=="L3t Th3 4dm1n 1n"){
 // 			if(login_secret_text=="Xcorner Works"){
-				
-//         $.ajax({
-//           url:'/user_logging_in',
-//           type:'GET',
+          	
+          $.get( "user_logging_in",function(data){
+            $('body').append(data);
+          });
 
-					
-// 				})
-
+          document.getElementById("login_button").disabled = true;
 // 			}
 // 		}
 // 	}
-// }
 
 
 
