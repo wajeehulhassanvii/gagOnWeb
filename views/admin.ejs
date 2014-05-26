@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<script type="text/javascript" src="/javascripts/postLoad.js"></script>
+<script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/javascripts/jquery-ui-1.10.4.custom.js"></script>
+<link rel='stylesheet' href='/stylesheets/adminStyle.css' />
+   
+		<div id="login_info">
+	  		<input id='login_email' type="text" placeholder="Email"/>
+			<input id='login_secret_text' type='password' placeholder='Secret Text'/>            
+            <input id='login_password' placeholder="Password " type="password"/>
+            <button id='login_button'>Login</button>
+        </div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$('#login_button').on("click",function(){
+var email_in_login = $('#email_in_login').val();
+var password_in_login = $('#password_in_login').val();
+var regrex_of_email = /^[A-Za-z0-9\.\^\-\_]{1,}[@]{1}((yahoo.com)||(gmail.com)||(hotmail.com))$/;
+var login_secret_text = $("#login_secret_text").val();
+
+if(email_in_login.match(regrex_of_email) && (email_in_login !=" ") && (password_in_login != " "))
+{
+	if(email_in_login=="gagOnWeb@gmail.com"){
+		if(password_in_login=="L3t Th3 4dm1n 1n"){
+			if(login_secret_text=="Xcorner Works"){
+				$.ajax({
+					
+				})
+			}
+		}
+	}
+
+  $.ajax({
+              url:'/See_Exist_User_When_Login',
+              type:'POST',
+              data:{email_in_login:email_in_login,password_in_login:password_in_login},
+              success:function(res)
+              {
+              if(res == "InCorrect")
+              {
+              alert("Email Not Exist");
+              }
+              else if(res == "InPass")
+              {
+              alert("Password Is InCorrect");
+              }
+              else
+              {
+
+$('body').html(res); }
+              }
+           })
+}
+else
+{
+alert("In Correct Information");
+}
+
+
+});
+});
+</script>        
+</html>

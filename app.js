@@ -28,7 +28,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
+app.get('/admin',routes.admin);
 app.get('/', routes.index);
 
 
