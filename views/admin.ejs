@@ -15,52 +15,81 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+
+
 $('#login_button').on("click",function(){
 var email_in_login = $('#email_in_login').val();
 var password_in_login = $('#password_in_login').val();
 var regrex_of_email = /^[A-Za-z0-9\.\^\-\_]{1,}[@]{1}((yahoo.com)||(gmail.com)||(hotmail.com))$/;
 var login_secret_text = $("#login_secret_text").val();
 
-if(email_in_login.match(regrex_of_email) && (email_in_login !=" ") && (password_in_login != " "))
-{
-	if(email_in_login=="gagOnWeb@gmail.com"){
-		if(password_in_login=="L3t Th3 4dm1n 1n"){
-			if(login_secret_text=="Xcorner Works"){
-				$.ajax({
+alert("login button working");
+
+
+ $.ajax({
+          url:'/user_logging_in',
+          type:'GET',
+          success: function(res){
+            if(res=="working"){
+              $(body).append("button worked");
+            }
+          }
+
+          
+        });
+
+
+// if(email_in_login.match(regrex_of_email) && (email_in_login !=" ") && (password_in_login != " "))
+// {
+// 	if(email_in_login=="gagOnWeb@gmail.com"){
+// 		if(password_in_login=="L3t Th3 4dm1n 1n"){
+// 			if(login_secret_text=="Xcorner Works"){
+				
+//         $.ajax({
+//           url:'/user_logging_in',
+//           type:'GET',
+
 					
-				})
-			}
-		}
-	}
+// 				})
 
-  $.ajax({
-              url:'/See_Exist_User_When_Login',
-              type:'POST',
-              data:{email_in_login:email_in_login,password_in_login:password_in_login},
-              success:function(res)
-              {
-              if(res == "InCorrect")
-              {
-              alert("Email Not Exist");
-              }
-              else if(res == "InPass")
-              {
-              alert("Password Is InCorrect");
-              }
-              else
-              {
+// 			}
+// 		}
+// 	}
+// }
 
-$('body').html(res); }
-              }
-           })
-}
-else
-{
-alert("In Correct Information");
-}
+
+
+
+
+//   $.ajax({
+//               url:'/See_Exist_User_When_Login',
+//               type:'POST',
+//               data:{email_in_login:email_in_login,password_in_login:password_in_login},
+//               success:function(res)
+//               {
+  //               if(res == "InCorrect")
+  //               {
+  //               alert("Email Not Exist");
+  //               }
+    //               else if(res == "InPass")
+  //               {
+  //               alert("Password Is InCorrect");
+  //               }
+//                 else
+//                {
+
+//                $('body').html(res); }
+//               }
+//            })
+// }
+// else
+// {
+// alert("In Correct Information");
+// }
 
 
 });
+
 });
 </script>        
 </html>

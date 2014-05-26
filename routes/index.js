@@ -10,3 +10,9 @@ exports.index = function(req, res){
 exports.admin = function(req, res){
   res.render('admin', { title: 'Admin Post Upload' });
 };
+
+exports.user_logged_in = function(req, res, err){
+	if(!err){
+  	res.send("working");
+  	}
+};
