@@ -20,7 +20,7 @@ var Schema1 = new Schema({
    //post_tags:[String],
     created_on:{ type: Date, default: Date.now },
     //created_by:String,
-    post_likes: { type: Date, default: 0 }
+    post_likes: { type: Number, default: 0 }
 });
 
 var Schema2= new Schema({
@@ -32,19 +32,58 @@ var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
 
 exports.uploading_post = function(req,res){
+    var fs = require('fs');
+    var path = require('path');//node module for filing
+
+    var path1 = req.files.thumbnail.path;
+    console.log(path1);
+
+    var a =  path.extname(path1);
+    console.log(a);
+
+        var tmp_path = req.files.thumbnail.path;
+        var   imgpth =  tmp_path.replace('ForwardSlash', '/');
+        tmp_path=  tmp_path.replace('/', 'ForwardSlash');
+        var target_path = '/public/img/' + req.files.thumbnail.name;
+        console.log(imgpth);
+
+               /* posts.post_img.data = fs.readFileSync(imgpth);
+                posts.post_img.contentType = 'image/png';
+              posts.save(function (err, a)
+                {
+                    if (err) throw err;
+
+                    console.error('saved img to mongo');
+
+
+                    fs.unlink(imgpth, function()
+                    {
+                        console.log("File is deleted");
+
+                    });
+
+                })
+                res.render('Saved');*/
+
+
+
+
     posts.create({
 
         post_number:1,
         post_title:req.body.post_title,
-        post_img:req.body.post_image,
-        post_description:req.body.post_description,
+        "post_img.data": fs.readFileSync(imgpth),
+        "post_img.contentType" : 'image/png',
+        "post_description":req.body.post_description,
         created_on:Date.now()
 
-    }, function(err,posts){
+    }, function(err,posts)
+    {
         if(!err){
             console.log("Post created and saved: " + posts);
         }
-    });
+    }
+    );
 
 }
 
