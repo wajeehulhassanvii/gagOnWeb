@@ -35,10 +35,46 @@ var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
 
 exports.uploading_post = function(req,res){
+<<<<<<< HEAD
     
     console.log(req);
 //    var image_path=fs.files.post_image.path;
   //  alert(image_path);
+=======
+    var fs = require('fs');
+    var path = require('path');//node module for filing
+
+    var path1 = req.files.thumbnail.path;
+    console.log(path1);
+
+    var a =  path.extname(path1);
+    console.log(a);
+
+        var tmp_path = req.files.thumbnail.path;
+        var   imgpth =  tmp_path.replace('ForwardSlash', '/');
+        tmp_path=  tmp_path.replace('/', 'ForwardSlash');
+        var target_path = '/public/img/' + req.files.thumbnail.name;
+        console.log(imgpth);
+
+               /* posts.post_img.data = fs.readFileSync(imgpth);
+                posts.post_img.contentType = 'image/png';
+              posts.save(function (err, a)
+                {
+                    if (err) throw err;
+
+                    console.error('saved img to mongo');
+
+
+                    fs.unlink(imgpth, function()
+                    {
+                        console.log("File is deleted");
+
+                    });
+
+                })
+                res.render('Saved');*/
+
+>>>>>>> 7a3b7cbc8fe30aec4e6273f411b79ab5eb765de1
 
 
 
@@ -46,15 +82,18 @@ exports.uploading_post = function(req,res){
 
         post_number:1,
         post_title:req.body.post_title,
-        post_img:req.body.post_image,
-        post_description:req.body.post_description,
+        "post_img.data": fs.readFileSync(imgpth),
+        "post_img.contentType" : 'image/png',
+        "post_description":req.body.post_description,
         created_on:Date.now()
 
-    }, function(err,posts){
+    }, function(err,posts)
+    {
         if(!err){
             console.log("Post created and saved: " + posts);
         }
-    });
+    }
+    );
 
 }
 
