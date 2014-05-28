@@ -1,4 +1,7 @@
 var mongoose = require('mongoose');
+var fs=require('fs');
+var path=require('path');
+
 var dbURI="mongodb://localhost/gagOnWeb";
 var connection = mongoose.connect(dbURI, function(err){
     //username: enigmaticWajeeh    db: xcornerworksw
@@ -14,13 +17,13 @@ var Schema   =  mongoose.Schema;
 
 var Schema1 = new Schema({
     post_number:Number,
-    post_title:{ type: String, default: "Hahaha No Title" },
+    post_title:{ type: String, default: "Hahaha No Title, admin is a jerk" },
     post_img: { data: Buffer, contentType: String },
     post_description:{ type: String, default: "No Value" },
    //post_tags:[String],
     created_on:{ type: Date, default: Date.now },
     //created_by:String,
-    post_likes: { type: Date, default: 0 }
+    post_likes: { type: Number, default: 0 }
 });
 
 var Schema2= new Schema({
@@ -32,6 +35,13 @@ var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
 
 exports.uploading_post = function(req,res){
+    
+    console.log(req);
+//    var image_path=fs.files.post_image.path;
+  //  alert(image_path);
+
+
+
     posts.create({
 
         post_number:1,
