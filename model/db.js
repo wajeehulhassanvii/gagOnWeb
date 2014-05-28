@@ -35,13 +35,7 @@ var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
 
 exports.uploading_post = function(req,res){
-<<<<<<< HEAD
-    
-    console.log(req);
-//    var image_path=fs.files.post_image.path;
-  //  alert(image_path);
-=======
-    var fs = require('fs');
+   var fs = require('fs');
     var path = require('path');//node module for filing
 
     var path1 = req.files.thumbnail.path;
@@ -56,31 +50,18 @@ exports.uploading_post = function(req,res){
         var target_path = '/public/img/' + req.files.thumbnail.name;
         console.log(imgpth);
 
-               /* posts.post_img.data = fs.readFileSync(imgpth);
-                posts.post_img.contentType = 'image/png';
-              posts.save(function (err, a)
-                {
-                    if (err) throw err;
+            
 
-                    console.error('saved img to mongo');
-
-
-                    fs.unlink(imgpth, function()
-                    {
-                        console.log("File is deleted");
-
-                    });
-
-                })
-                res.render('Saved');*/
-
->>>>>>> 7a3b7cbc8fe30aec4e6273f411b79ab5eb765de1
-
+    //take total post count from database and put it in a variable the add 1 to it then 
+    // (goto *here1) and post it to database and for (goto *here2) use the algorith I defined
+    // in postLoad.js to create dynamic ID name as (Img-000   --- > Imt-999) since our website is for 1000
+    // post only, which we will use to find post and append to 5 divs in our page   
 
 
     posts.create({
 
-        post_number:1,
+        post_number:1, // *here1 and send it to server as post number
+    //    img_name: *here2
         post_title:req.body.post_title,
         "post_img.data": fs.readFileSync(imgpth),
         "post_img.contentType" : 'image/png',

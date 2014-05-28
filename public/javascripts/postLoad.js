@@ -25,6 +25,8 @@ $(document).ready(function(){
 
             for(var i=post_num_min,j=0;i<=post_num_max,j<10;i++)
             {
+
+                // single digit number
                 if(post_num_min<10&&post_num_min>-1){
                     post_id=post_id+"00"+j+"'";
                     dynamic_id=dynamic_id+"00"+i;
@@ -34,6 +36,8 @@ $(document).ready(function(){
                     post_id="#post-";
                 }
 
+
+                // double digit number
                 if(post_num_min<100&&post_num_min>9){
                     dynamic_id=dynamic_id+"0"+i;
                     post_id=post_id+"00"+j+"'";
@@ -44,6 +48,8 @@ $(document).ready(function(){
                     post_id="#post-";
                 }
 
+
+                //triple digit number
                 if(post_num_min<1000&&post_num_min>100){
                     dynamic_id=dynamic_id+i;
                     post_id=post_id+"00"+j+"'";
