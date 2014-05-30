@@ -20,7 +20,7 @@
     <button id="logout_button">logout</button>
     </div>
   </div>
-
+  <div value="#{page_element}"></div>
 </body>
 
 
@@ -38,7 +38,9 @@ $(document).ready(function(){
 
 
 $('#logout_button').on('click', function(){
-  $.get('/logging_out');
+  $.get('/logging_out',function(){
+    alert("going away");
+  });
 });
 
 $('#login_button').on("click",function(){

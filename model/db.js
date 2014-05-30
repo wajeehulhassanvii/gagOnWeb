@@ -26,11 +26,23 @@ var Schema1 = new Schema({
     post_likes: { type: Number, default: 0 }
 });
 
+
+
+// var Schema3=new Schema({
+//     email:String,
+//     secretText:String,
+//     password:String
+// });
+
+
 var Schema2= new Schema({
-    available_post:Number,
-    total_posted:Number
+    available_post:{type:Number, default:0},
+    total_posted:{type:Number, default:0}
 });
 
+
+
+//var users = mongoose.model("users",Schema3);
 var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
 
@@ -58,9 +70,36 @@ exports.uploading_post = function(req,res){
     // post only, which we will use to find post and append to 5 divs in our page   
 
 
-    posts.create({
 
-        post_number:1, // *here1 and send it to server as post number
+    var total_posts_from_db=0;
+    //working fine with count
+    posts.count({}, function( err, count){
+
+        dataHistory.count({},function(err,dataCount){
+            dataHistory.create({
+                total_posted:dataCount+1,
+                available_post:count
+            },function(err,dataHistory){
+                console.log("data History is :" + dataHistory);
+            })
+        }
+        )
+
+
+        // // updating database with total post uploaded and available post
+        // dataHistory.create({
+        //     available_post:count,
+        //     total_posted:Number
+        // }, function(err,data_history)
+        // {
+        //     if(!err){
+        //         console.log("dataHistory updated: " + data_history);
+        //     }
+        // });
+
+        posts.create({  // post uploading
+
+        post_number:count + 1, // *here1 and send it to server as post number
     //    img_name: *here2
         post_title:req.body.post_title,
         "post_img.data": fs.readFileSync(imgpth),
@@ -74,8 +113,25 @@ exports.uploading_post = function(req,res){
             console.log("Post created and saved: " + posts);
         }
     }
-    );
+    );   // post.create ends here
 
+
+    console.log( "Number of users:", count );
+    total_posts_from_db=count;
+    console.log( "Number of users:", total_posts_from_db );
+ })
+
+   
+    
+
+
+    res.redirect('admin',
+        {   'myid': "asd",
+            'page_element': "<br><br><br><div id='uploadForm'><form method='post' enctype='multipart/form-data' name='postUpload' action='/post_upload' ><br><br><input type='text' id='post_title' name='post_title' placeholder='Post Title'><br><br><input type='text' id='post_description' name='post_description' placeholder='Post Description'><br><br><input type='file' id='thumbnail' name='thumbnail' placeholder='Browse Image'><br><br><button>Post Image</button></form></div>"
+        }
+     ,function(){
+        console.log('redirecting to admin');
+    });
 }
 
 

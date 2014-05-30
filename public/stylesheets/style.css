@@ -10,11 +10,38 @@ body {
 	width: 60%;
 	float: left;
 }
-#selected_post{
-	height: 900px;
+#prominent_post{
+	opacity: 0.85;
+	height: auto;
 	width: 30%;
 	float: right;
-	background-color: black;
+	font-size: 20px;
+}
+
+#top3_post_head,#random_post_head{
+	color:wheat;
+	font-size: 35px;
+	text-align: center;
+}
+
+#top3_post{
+	text-align: center;
+	color:white;
+}
+
+#top3_post img{
+	width: 100%;
+}
+
+
+#random_post{
+	text-align: center;
+	color:white;
+}
+
+#random_post img{
+	width: 100%;
+
 }
 
 header {

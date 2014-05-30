@@ -8,7 +8,7 @@ exports.index = function(req, res){
 };
 
 exports.log_out = function(req, res){
-  res.render('index.ejs', { title: 'Gag On Web' });
+  res.render('index', { title: 'Gag On Web' });
 };
 
 exports.admin = function(req, res){
