@@ -3,8 +3,10 @@
 
 <script type="text/javascript" src="/javascripts/postLoad.js"></script>
 <script type="text/javascript" src="/javascripts/jquery-2.1.1.min.js"></script>
+
 <script type="text/javascript" src="/javascripts/jquery-ui-1.10.4.custom.js"></script>
 <link rel='stylesheet' href='/stylesheets/style.css' />
+
    
 <title>
 	Gags On Web
@@ -15,49 +17,55 @@
 
 <!-- <body style="background: url('/images/Torres_and_Gerrard_W.jpg')">
  -->
-<body>
+<body >
 <div id="postContainer">
 	<br><br><br>
 	<div id="post-000">
-	<br>
-		<span id="post-head-000">This is Post 000</span><br><br>
-	<div id="post_img-0"></div>	<img src="/images/img-000.jpg">	<br>		
-	<button id="share_button">Share</button>
-     <input type="image" src="/images/ILikeIt.png" alt="Submit">	
+	<div class="post_heads">
+		<span id="post-head-000">This is Post 000</span></div><br><br>
+	<div id="post_img-0"></div><img src="/images/img-000.jpg">
+			<br>		
+	<button id="share_button" >Share</button>
+	<button >I Like It!</button>
      <hr> <br>
 	</div>
     
-    
+    <button id="tweet_button">tweet</button>
+
 	<br><br><br><br>
 
 	<div id="post-001">
-		<span id="post-head-001">This is Post 001</span><br><br>
+	<div class="post_heads">
+		<span id="post-head-001">This is Post 001</span></div><br><br>
 	<div id="post_img-1">	<img src="/images/img-001.jpg"></div>
      <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>			 <br>
 	</div>
 	<br><br><br><br>
 
 	<div id="post-002">
-		<span id="post-head-002">This is Post 002</span><br><br>
+	<div class="post_heads">
+		<span id="post-head-002">This is Post 002</span></div><br><br>
 	<div id="post_img-2">	<img src="/images/img-002.jpg"></div>
      <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>		 <br>
 	</div>
 	<br><br><br><br>
 
 	<div id="post-003">
-		<span id="post-head-003">This is Post 003</span><br><br>
+	<div class="post_heads">
+		<span id="post-head-003">This is Post 003</span></div><br><br>
 	<div id="post_img-3">	<img src="/images/img-003.jpg"></div>
      <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>		 <br>
 	</div>
 	<br><br><br><br>
 
 	<div id="post-004">
-		<span id="post-head-004">This is Post 004</span><br><br>
+	<div class="post_heads">
+		<span id="post-head-004">This is Post 004</span></div><br><br>
 	<div id="post_img-4">	<img src="/images/img-004.jpg"></div>	
      <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>	 <br>
 	</div>
 	<br><br>
-
+	<div class="post_heads"></div>
 
 <!-- 
 	<div id="post-005">
@@ -106,7 +114,8 @@
 
 <div id="prominent_post">
 
-	<span id="top3_post_head">TOP3 POSTS</span>	
+	<div class="post_heads_total">
+	<span id="top3_post_head">TOP3 POSTS</span>	</div>
 	<br><br><br>
 	<div id="top3_post">
 		<div id="top3_post-1">
@@ -127,8 +136,9 @@
 
 <br><br><br><br><br>
 	
-
-	<span id="random_post_head">RANDOM POSTS</span>
+	
+	<div class="post_heads_total">
+	<span id="random_post_head">RANDOM POSTS</span> </div>
 	<br><br><br>
 	<div id="random_post">
 		<div id="random_post-nav">
@@ -144,14 +154,28 @@
 		<br><br>
 		<div id="random_post-1">
 			<span id="random_post-head-000">This is Post 000</span><br>
-		<div id="random_post_img-0"></div>	<img src="/images/img-007.jpg">		<hr> 
+		<div id="random_post_img-0"></div>	<img src="/images/img-007.jpg">		<hr> <br>
 		</div>
 		<br><br>
 		<div id="random_post_2">
 			<span id="random_post_head-001">This is Post 000</span><br>
-		<div id="random_post_nav_1"></div>	<img src="/images/img-009.jpg">	<hr> 	
+		<div id="random_post_nav_1"></div>	<img src="/images/img-009.jpg">		<hr> <br>
 		</div>
 	</div>
+
+	<br><br><br>
+	<div id="fun_posts">
+	<div class="post_heads_total">	<span id="fun_post_head">Fun posts</span><br>  </div>
+		try out the titles & get amazed
+		<ul id="fun_posts_list">
+			<li id="fun_posts_1">post 1 fun post</li><hr>
+			<li id="fun_posts_2">post 1 fun post</li><hr>
+			<li id="fun_posts_3">post 1 fun post</li><hr>
+			<li id="fun_posts_4">post 1 fun post</li><hr>
+			<li id="fun_posts_5">post 1 fun post</li><hr>
+		</ul>
+	</div>
+
 
 </div>
 
@@ -168,6 +192,10 @@
 	    var prev_page_array = new Array();
 	    var total_post=0;
 
+	    $("#tweet_button").on("click",function(){
+	    	
+	    	$.post( "post_tweet" );
+	    });
 
 
 	$("#next_page").on("click", function(){

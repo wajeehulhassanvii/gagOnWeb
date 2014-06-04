@@ -1,10 +1,21 @@
 body {
 	text-decoration: inline;
-	background-color: black;
+	background-color: white;
 	width: 80%;
 	margin: auto;
   padding: 50px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.post_heads_total{
+	background-color: #1ABC9C;
+	border-radius: 35px;
+	color: white;
+}
+.post_heads{
+	background-color: #1ABC9C;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+
 }
 #postContainer{
 	width: 60%;
@@ -25,17 +36,28 @@ float: left;
 #random_next{
 float: right;
 }
+#title{
 
-#top3_post_head,#random_post_head{
-	color:rgb(216, 37, 37);
+	background-color: #1ABC9C;
+}
+
+#fun_posts_list{
+	background-color: #E74C3C;
+}
+
+#top3_post_head{
+	color: white;
 	font-size: 35px;
 	text-align: center;
-	background-color: yellow;
 }
 
 #top3_post{
 	text-align: center;
 	color:white;
+}
+
+#fun_posts_list{
+	list-style: none;
 }
 
 #top3_post img{
@@ -67,6 +89,8 @@ header {
 	background-color: rgb(216, 37, 37);
 	text-align: center;
 	color: white;
+	border-spacing: 3px;
+	border-color: black;
 }
 
 #top3_post-2,#top3_post-1,#top3_post-3,#random_post-nav,#random_post-1,#random_post_2{
@@ -81,7 +105,7 @@ border-radius: 10px;
 }
 
 #post-head-000,#post-head-001,#post-head-002,#post-head-003,#post-head-004,#post-head-005,#post-head-006,#post-head-007,#post-head-008,#post-head-009{
-background-color: rgb(216, 37, 37);
+
 height: auto;
 font-size: 50px;
 text-align: center;

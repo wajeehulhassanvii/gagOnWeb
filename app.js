@@ -41,6 +41,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+app.get('post_tweet',db.tweet);
 app.get('/admin',routes.admin);
 app.get('/', routes.index);
 app.get('/user_logging_in', routes.user_logged_in);

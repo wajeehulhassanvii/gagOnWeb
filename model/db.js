@@ -1,6 +1,17 @@
 var mongoose = require('mongoose');
 var fs=require('fs');
 var path=require('path');
+var Twit = require('twit');
+
+
+//Twitter authentication
+
+// var T = new Twit({
+//     consumer_key:         '...'
+//   , consumer_secret:      '...'
+//   , access_token:         '...'
+//   , access_token_secret:  '...'
+// })
 
 var dbURI="mongodb://localhost/gagOnWeb";
 var connection = mongoose.connect(dbURI, function(err){
@@ -37,6 +48,7 @@ var Schema1 = new Schema({
 
 var Schema2= new Schema({
     available_post:{type:Number, default:0},
+    availability:{type:Boolean, default:true},
     total_posted:{type:Number, default:0}
 });
 
@@ -45,6 +57,13 @@ var Schema2= new Schema({
 //var users = mongoose.model("users",Schema3);
 var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
+
+exports.tweet = function(req,res){
+    T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
+      console.log("data sent by server: "+data)
+    })
+    
+};
 
 exports.uploading_post = function(req,res){
    var fs = require('fs');
