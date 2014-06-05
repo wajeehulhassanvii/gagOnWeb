@@ -59,11 +59,38 @@ var dataHistory = mongoose.model("dataHistory",Schema2);
 var posts = mongoose.model("posts",Schema1);
 
 exports.tweet = function(req,res){
+    // 
+
     T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
       console.log("data sent by server: "+data)
     })
     
 };
+
+// randomize the random post selection
+exports.randomize_post = function(req,res){
+ 
+   var random_post_number=0;
+   posts.count({},function(err,maxCount){
+    console.log("max count is : " + maxCount );
+    random_post_number=getRandomInt(000,maxCount-1);
+        posts.findOne(
+            {post_number:random_post_number},
+            function(err,random_post_to_return){
+                if(!err){
+                   console.log("value is : " + random_post_to_return);
+                   res.send(random_post_to_return); 
+                }
+            }
+            )
+    })
+
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+}
+
 
 exports.uploading_post = function(req,res){
    var fs = require('fs');
@@ -156,6 +183,45 @@ exports.uploading_post = function(req,res){
 
 
 
+exports.Get_Five_Images=function(req,res)
+{
+
+    posts.find({}, function (err, doc) {
+        
+        //  getting five consecutive images 
+        // var last_post=doc.length;
+
+        // for(var j=last_post,var i=0;i<6;i++,j--){
+        //     if(doc[last_post].img.data!=null){
+
+        //     }
+        // }
+
+        //  Ends here
+
+        // Ali getting one image
+        if(doc[0].img.data == null)
+        {
+            res.send("yes");
+        }
+        else
+        {
+            var img;
+            var result_img = {};
+            var content = doc[0].img.contentType;
+            for(var i=0;i<doc.length;i++)
+            {
+                img = new Buffer(doc[i].img.data, 'binary').toString('base64');
+                result_img[i]=img;
+            }
+            res.contentType(content);
+            console.log(result_img);
+            res.send(result_img);
+        }
+
+    });
+
+}
 
 
 
