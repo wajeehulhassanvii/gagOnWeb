@@ -191,6 +191,21 @@
 	    var post_id="#post-00";
 	    var prev_page_array = new Array();
 	    var total_post=0;
+	    var page_visit=0;
+
+	    if(page_visit<1){
+	    	page_visit++;
+	    	$.get(
+	    		"/page_first_visit",
+	    		function(data){
+	    			var myData1=JSON.stringify(data);
+	    			myData1=JSON.parse(myData1);
+	    			alert(myData1[1]);
+	    		}
+	    		);
+
+	    }
+
 
 	    $("#tweet_button").on("click",function(){
 	    	

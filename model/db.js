@@ -67,6 +67,78 @@ exports.tweet = function(req,res){
     
 };
 
+
+
+exports.page_first_visit = function (req,res){
+    //fetch first posts in 0-4 index
+    //fetch 3 top likes posts in 5-7 index
+    //fetch 3 random posts in 8-10
+    //fetch 5 random title in 11-15
+    var dataOfServer={};
+
+    function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+
+    // put 5 latest posts
+    for(var i=0, j=posts.length-1; i<6; i++, j--){ 
+
+        posts.find(
+            {},
+            function(err,dataPost){
+                    if(!err){
+                    dataOfServer[i]=dataPost[j];
+                }
+            }
+        );
+    // last index of dataOfServer 4
+
+    console.log("data sending " + dataOfServer[i]);
+   
+    } // for loop ends here
+
+    
+    // dataOfServer start from 5
+    // put most liked posts
+    posts.find(
+            {},
+            null,
+            {sort: {post_likes : -1}},
+            function(err, LikedPosts){
+                if(!err){
+                    console.log("adding data : " + LikedPosts[0]);
+                    dataOfServer[5]=LikedPosts[0];
+                    console.log("adding data : " + LikedPosts[1]);
+                    dataOfServer[6]=LikedPosts[1];
+                    console.log("adding data : " + LikedPosts[2]);
+                    dataOfServer[7]=LikedPosts[2];
+                }
+            }
+
+        ); // most liked posts put to returning field
+    //dataOfServer ended at index 7
+
+    // dataOfServer start from 8
+    posts.find(
+            {},
+            function(err, randomPost){
+                for(var i=8;i<16;i++){
+                    var random_post_number=getRandomInt(000,posts.length);
+                    dataOfServer[i]=randomPost[random_post_number];
+                    console.log("adding data : " + randomPost[random_post_number]);
+                }
+            }
+
+        );  // 8 random posts
+
+
+    
+    res.send(dataOfServer);
+
+}
+
+
 // randomize the random post selection
 exports.randomize_post = function(req,res){
  
@@ -84,6 +156,10 @@ exports.randomize_post = function(req,res){
             }
             )
     })
+
+
+
+
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
