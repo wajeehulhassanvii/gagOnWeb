@@ -10,6 +10,16 @@ body {
 background-color: rgb(221, 81, 81);
 border-radius: 25px;
 }
+.latest_post_addon{
+	text-decoration: inline;
+	height:26px;
+	background-color: #E74C3C;
+}
+
+.like_section{
+text-decoration: inline;
+}
+
 .post_heads_total{
 	background-color: #1ABC9C;
 	border-radius: 35px;
@@ -19,6 +29,10 @@ border-radius: 25px;
 	background-color: #1ABC9C;
 	border-top-right-radius: 15px;
 	border-top-left-radius: 15px;
+
+}
+#random_post_head{
+font-size: 35px;
 
 }
 #postContainer{
@@ -43,6 +57,7 @@ float: right;
 
 
 #fun_posts_list{
+
 	background-color: #E74C3C;
 }
 
@@ -50,6 +65,10 @@ float: right;
 	color: white;
 	font-size: 35px;
 	text-align: center;
+}
+
+#fun_post_head{
+	font-size: 35px;
 }
 
 #top3_post{

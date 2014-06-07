@@ -23,11 +23,17 @@
 	<div id="post-000">
 	<div class="post_heads">
 		<span id="post-head-000">This is Post 000</span></div><br><br>
-	<div id="post_img-0"></div><img src="/images/img-000.jpg">
-			<br>		
+	<div id="post_img-0"><img src="/images/img-000.jpg"></div>
+
+	<div class="latest_post_addon">
+		<div id="like_section-1" class="like_section">
+			likes : <div id="post_likes-1"></div>
+		</div>
 	<button id="share_button" >Share</button>
 	<button >I Like It!</button>
+	</div>
      <hr> <br>
+
 	</div>
     
     <button id="tweet_button">tweet</button>
@@ -38,31 +44,55 @@
 	<div class="post_heads">
 		<span id="post-head-001">This is Post 001</span></div><br><br>
 	<div id="post_img-1">	<img src="/images/img-001.jpg"></div>
-     <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>			 <br>
+	<div class="latest_post_addon">
+	<button id="share_button" >Share</button>
+	<button >I Like It!</button>
+	</div>
+    
+	<hr> <br>
 	</div>
 	<br><br><br><br>
 
 	<div id="post-002">
 	<div class="post_heads">
-		<span id="post-head-002">This is Post 002</span></div><br><br>
+	<span id="post-head-002">This is Post 002</span></div><br><br>
+	
 	<div id="post_img-2">	<img src="/images/img-002.jpg"></div>
-     <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>		 <br>
+	<div class="latest_post_addon">
+	<button id="share_button" >Share</button>
+	<button >I Like It!</button>
+	</div>
+    
+    <hr>		 <br>
 	</div>
 	<br><br><br><br>
 
+	
 	<div id="post-003">
 	<div class="post_heads">
 		<span id="post-head-003">This is Post 003</span></div><br><br>
 	<div id="post_img-3">	<img src="/images/img-003.jpg"></div>
-     <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>		 <br>
+	
+	<div class="latest_post_addon">
+	<button id="share_button" >Share</button>
+	<button >I Like It!</button>
+	</div>
+    
+    <hr>		 <br>
 	</div>
 	<br><br><br><br>
 
+	
 	<div id="post-004">
 	<div class="post_heads">
-		<span id="post-head-004">This is Post 004</span></div><br><br>
-	<div id="post_img-4">	<img src="/images/img-004.jpg"></div>	
-     <input type="image" src="/images/ILikeIt.png" alt="Submit"><hr>	 <br>
+	<span id="post-head-004">This is Post 004</span></div><br><br>
+	<div id="post_img-4">	<img src="/images/img-004.jpg"></div>
+	<div class="latest_post_addon">
+	<button id="share_button" >Share</button>
+	<button >I Like It!</button>
+	</div>
+    
+    <hr>	 <br>
 	</div>
 	<br><br>
 	<div class="post_heads"></div>
@@ -116,7 +146,7 @@
 
 	<div class="post_heads_total">
 	<span id="top3_post_head">TOP3 POSTS</span>	</div>
-	<br><br><br>
+	<br>
 	<div id="top3_post">
 		<div id="top3_post-1">
 			<span id="top3_post-head-000">This is Post 000</span><br>
@@ -134,12 +164,12 @@
 		</div>
 	</div>
 
-<br><br><br><br><br>
+<br><br><br>
 	
 	
 	<div class="post_heads_total">
 	<span id="random_post_head">RANDOM POSTS</span> </div>
-	<br><br><br>
+	<br>
 	<div id="random_post">
 		<div id="random_post-nav">
 			<span id="random_post-nav-head">This is a Random post nav</span><br>
@@ -165,14 +195,14 @@
 
 	<br><br><br>
 	<div id="fun_posts">
-	<div class="post_heads_total">	<span id="fun_post_head">Fun posts</span><br>  </div>
+	<div class="post_heads_total">	<span id="fun_post_head">Fun posts</span>  </div>
 		try out the titles & get amazed
 		<ul id="fun_posts_list">
-			<li id="fun_posts_1">post 1 fun post</li><hr>
-			<li id="fun_posts_2">post 1 fun post</li><hr>
-			<li id="fun_posts_3">post 1 fun post</li><hr>
-			<li id="fun_posts_4">post 1 fun post</li><hr>
-			<li id="fun_posts_5">post 1 fun post</li><hr>
+			<ul id="fun_posts_1">post 1 fun post</ul><hr>
+			<ul id="fun_posts_2">post 1 fun post</ul><hr>
+			<ul id="fun_posts_3">post 1 fun post</ul><hr>
+			<ul id="fun_posts_4">post 1 fun post</ul><hr>
+			<ul id="fun_posts_5">post 1 fun post</ul><hr>
 		</ul>
 	</div>
 
@@ -241,26 +271,35 @@
 	    			//first post
 	    			var post_values_to_append = document.getElementById("post-head-000");
 					post_values_to_append.innerHTML = post_recieved_from_server_0.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_0._id);
+					alert(post_values_to_append.getAttribute('value'));		
+					post_values_to_append = document.getElementById("post_likes-1");
+					post_values_to_append.innerHTML = post_recieved_from_server_0.post_likes;
+
 
 
 					// second post
 					post_values_to_append = document.getElementById("post-head-001");
 					post_values_to_append.innerHTML = post_recieved_from_server_1.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_1._id);
 
 
 					// third post
 					post_values_to_append = document.getElementById("post-head-002");
 					post_values_to_append.innerHTML = post_recieved_from_server_2.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_2._id);
 
 
 					// fourth post
 					post_values_to_append = document.getElementById("post-head-003");
 					post_values_to_append.innerHTML = post_recieved_from_server_3.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_3._id);
 
 
 					// fifth post
 					post_values_to_append = document.getElementById("post-head-004");
 					post_values_to_append.innerHTML = post_recieved_from_server_4.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_4._id);
 
 
 
@@ -272,14 +311,18 @@
 					//top - post - 1
 					post_values_to_append = document.getElementById("top3_post-head-000");
 					post_values_to_append.innerHTML = post_recieved_from_server_5.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_5._id);
 
 					//top - post - 2
 					post_values_to_append = document.getElementById("top3_post-head-001");
 					post_values_to_append.innerHTML = post_recieved_from_server_6.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_6._id);
+					alert(post_values_to_append.getAttribute('value'));		
 
 					//top - post - 3
 					post_values_to_append = document.getElementById("top3_post-head-002");
 					post_values_to_append.innerHTML = post_recieved_from_server_7.post_title;
+					post_values_to_append.setAttribute('value', post_recieved_from_server_7._id);
 
 
 
@@ -288,43 +331,51 @@
 					//random-post-nav
 					post_values_to_append = document.getElementById("random_post-nav-head");
 					post_values_to_append.innerHTML = post_recieved_from_server_8.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_8._id);
 					
 
 					// random-post-1
 					post_values_to_append = document.getElementById("random_post-head-000");
 					post_values_to_append.innerHTML = post_recieved_from_server_9.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_9._id);
 						
 
 					// random-post-2
 					post_values_to_append = document.getElementById("random_post_head-001");
-					post_values_to_append.innerHTML = post_recieved_from_server_10.post_title;					
+					post_values_to_append.innerHTML = post_recieved_from_server_10.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_10._id);				
 
 
 					// apending values for headed posts
 					//head-1
 					post_values_to_append = document.getElementById("fun_posts_1");
-					post_values_to_append.innerHTML = post_recieved_from_server_11.post_title;					
+					post_values_to_append.innerHTML = post_recieved_from_server_11.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_11._id);				
 
 
 					//head 2
 					post_values_to_append = document.getElementById("fun_posts_2");
-					post_values_to_append.innerHTML = post_recieved_from_server_12.post_title;					
+					post_values_to_append.innerHTML = post_recieved_from_server_12.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_12._id);			
+					alert(post_values_to_append.getAttribute('value'));	
 
 
 					//head 3
 					post_values_to_append = document.getElementById("fun_posts_3");
-					post_values_to_append.innerHTML = post_recieved_from_server_13.post_title;					
+					post_values_to_append.innerHTML = post_recieved_from_server_13.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_13._id);				
 
 
 					//head 4
 					post_values_to_append = document.getElementById("fun_posts_4");
-					post_values_to_append.innerHTML = post_recieved_from_server_14.post_title;					
+					post_values_to_append.innerHTML = post_recieved_from_server_14.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_14._id);				
 
 
 					//head 5
 					post_values_to_append = document.getElementById("fun_posts_5");
-					post_values_to_append.innerHTML = post_recieved_from_server_15.post_title;					
-
+					post_values_to_append.innerHTML = post_recieved_from_server_15.post_title;	
+					post_values_to_append.setAttribute('value', post_recieved_from_server_15._id);				
 	    			alert("data fetching and parsing done of first 5");
 
 	    		}
