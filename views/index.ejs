@@ -124,12 +124,12 @@
 		</div>
 		<br><br>
 		<div id="top3_post-2">
-			<span id="top_post-head-000">This is Post 000</span><br>
+			<span id="top3_post-head-001">This is Post 000</span><br>
 		<div id="top3_post_img-0"></div>	<img src="/images/img-005.jpg">		<hr> <br>
 		</div>
 		<br><br>
 		<div id="top3_post-3">
-			<span id="top3_post-head-000">This is Post 000</span><br>
+			<span id="top3_post-head-002">This is Post 000</span><br>
 		<div id="top3_post_img-0"></div>	<img src="/images/img-003.jpg">	<hr>	 <br>
 		</div>
 	</div>
@@ -193,14 +193,97 @@
 	    var total_post=0;
 	    var page_visit=0;
 
+
+//first time visiting the page
 	    if(page_visit<1){
 	    	page_visit++;
-	    	$.get(
-	    		"/page_first_visit",
-	    		function(data){
-	    			var myData1=JSON.stringify(data);
-	    			myData1=JSON.parse(myData1);
-	    			alert(myData1[1]);
+	    	$.get("/page_first_visit")
+	    		.done(function(data){
+	    			alert("data Loaded, currently in done function of ajax");
+			    			
+	    			var post_recieved_from_server_0=JSON.stringify(data[0]);
+	    			var post_recieved_from_server_1=JSON.stringify(data[1]);
+	    			var post_recieved_from_server_2=JSON.stringify(data[2]);
+	    			var post_recieved_from_server_3=JSON.stringify(data[3]);
+	    			var post_recieved_from_server_4=JSON.stringify(data[4]);
+	    			var post_recieved_from_server_5=JSON.stringify(data[5]);
+	    			var post_recieved_from_server_6=JSON.stringify(data[6]);
+	    			var post_recieved_from_server_7=JSON.stringify(data[7]);
+	    			var post_recieved_from_server_8=JSON.stringify(data[8]);
+	    			var post_recieved_from_server_9=JSON.stringify(data[9]);
+	    			var post_recieved_from_server_10=JSON.stringify(data[10]);
+	    			var post_recieved_from_server_11=JSON.stringify(data[11]);
+	    			var post_recieved_from_server_12=JSON.stringify(data[12]);
+	    			var post_recieved_from_server_13=JSON.stringify(data[13]);
+	    			var post_recieved_from_server_14=JSON.stringify(data[14]);
+	    			var post_recieved_from_server_15=JSON.stringify(data[15]);
+
+
+	    			post_recieved_from_server_0=JSON.parse(post_recieved_from_server_0);
+	    			post_recieved_from_server_1=JSON.parse(post_recieved_from_server_1);
+	    			post_recieved_from_server_2=JSON.parse(post_recieved_from_server_2);
+	    			post_recieved_from_server_3=JSON.parse(post_recieved_from_server_3);
+	    			post_recieved_from_server_4=JSON.parse(post_recieved_from_server_4);
+	    			post_recieved_from_server_5=JSON.parse(post_recieved_from_server_5);
+	    			post_recieved_from_server_6=JSON.parse(post_recieved_from_server_6);
+	    			post_recieved_from_server_7=JSON.parse(post_recieved_from_server_7);
+	    			post_recieved_from_server_8=JSON.parse(post_recieved_from_server_8);
+	    			post_recieved_from_server_9=JSON.parse(post_recieved_from_server_9);
+	    			post_recieved_from_server_10=JSON.parse(post_recieved_from_server_10);
+	    			post_recieved_from_server_11=JSON.parse(post_recieved_from_server_11);
+	    			post_recieved_from_server_12=JSON.parse(post_recieved_from_server_12);
+	    			post_recieved_from_server_13=JSON.parse(post_recieved_from_server_13);
+	    			post_recieved_from_server_14=JSON.parse(post_recieved_from_server_14);
+	    			post_recieved_from_server_15=JSON.parse(post_recieved_from_server_15);
+
+
+	    			// appending values for latest5 posts
+	    			//first post
+	    			var post_values_to_append = document.getElementById("post-head-000");
+					post_values_to_append.innerHTML = post_recieved_from_server_0.post_title;
+
+
+					// second post
+					post_values_to_append = document.getElementById("post-head-001");
+					post_values_to_append.innerHTML = post_recieved_from_server_1.post_title;
+
+
+					// third post
+					post_values_to_append = document.getElementById("post-head-002");
+					post_values_to_append.innerHTML = post_recieved_from_server_2.post_title;
+
+
+					// fourth post
+					post_values_to_append = document.getElementById("post-head-003");
+					post_values_to_append.innerHTML = post_recieved_from_server_3.post_title;
+
+
+					// fifth post
+					post_values_to_append = document.getElementById("post-head-004");
+					post_values_to_append.innerHTML = post_recieved_from_server_4.post_title;
+
+
+
+
+
+
+					// appending values for top3 posts
+
+					//top - post - 1
+					post_values_to_append = document.getElementById("top3_post-head-000");
+					post_values_to_append.innerHTML = post_recieved_from_server_5.post_title;
+
+					//top - post - 2
+					post_values_to_append = document.getElementById("top3_post-head-001");
+					post_values_to_append.innerHTML = post_recieved_from_server_6.post_title;
+
+					//top - post - 3
+					post_values_to_append = document.getElementById("top3_post-head-002");
+					post_values_to_append.innerHTML = post_recieved_from_server_7.post_title;
+
+
+	    			alert("data fetching and parsing done of first 5");
+
 	    		}
 	    		);
 

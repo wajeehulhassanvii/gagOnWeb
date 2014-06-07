@@ -27,10 +27,10 @@ var connection = mongoose.connect(dbURI, function(err){
 var Schema   =  mongoose.Schema;
 
 var Schema1 = new Schema({
-    post_number:Number,
+    //post_number:Number,
     post_title:{ type: String, default: "Hahaha No Title, admin is a jerk" },
     post_img: { data: Buffer, contentType: String },
-    post_description:{ type: String, default: "No Value" },
+  //  post_description:{ type: String, default: "No Value" },
    //post_tags:[String],
     created_on:{ type: Date, default: Date.now },
     //created_by:String,
@@ -74,7 +74,7 @@ exports.page_first_visit = function (req,res){
     //fetch 3 top likes posts in 5-7 index
     //fetch 3 random posts in 8-10
     //fetch 5 random title in 11-15
-    var dataOfServer={};
+    var dataOfServer= [];
 
     function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -82,59 +82,78 @@ exports.page_first_visit = function (req,res){
 
 
     // put 5 latest posts
-    for(var i=0, j=posts.length-1; i<6; i++, j--){ 
+   
 
         posts.find(
             {},
             function(err,dataPost){
                     if(!err){
-                    dataOfServer[i]=dataPost[j];
+                    for(var i =0,j=dataPost.length-1;i<5;i++,j--){
+                        dataOfServer[i]=dataPost[j];
+                        console.log("first five "+(i)+" :"+dataOfServer[i]);
+                    }
+                    
+                    // dataOfServer start from 5 to 7
+                    // put most liked posts or top -3
+                    posts.find(
+                            {},
+                            null,
+                            {sort: {post_likes : -1}}, // descending
+                            function(err, LikedPosts){
+                                if(!err){
+                                    dataOfServer[5]=LikedPosts[0];
+                                    console.log("adding data "+"at : 5" + dataOfServer[5]);
+                                    dataOfServer[6]=LikedPosts[1];
+                                    console.log("adding data : "+"at : 6" + dataOfServer[6]);
+                                    dataOfServer[7]=LikedPosts[2];
+                                    console.log("adding data : "+"at : 7" + dataOfServer[7]);
+                                
+                                    // dataOfServer start from 8 to get 8 random posts
+                                    posts.find(
+                                            {},
+                                            function(err, randomPost){
+                                                for(var i=8;i<16;i++){
+                                                    var random_post_number=getRandomInt(000,posts.length-1);
+                                                    dataOfServer[i]=randomPost[random_post_number];
+                                                    console.log("adding random data at "+ i + " :" + dataOfServer[i]);
+                                                }
+
+
+                                                 for(var i=0; i<dataOfServer.length;i++){
+                                                        console.log("sending DataOfServer No " + i +" :" + dataOfServer[i]);
+                                                    }
+                                                    res.send(dataOfServer);
+
+
+                                            }
+
+                                        );  // 8 random posts
+
+
+
+                                }
+                            }
+
+                        ); // most liked posts put to returning field
+                
+
+                
+
+   
+
                 }
             }
         );
     // last index of dataOfServer 4
 
-    console.log("data sending " + dataOfServer[i]);
    
-    } // for loop ends here
 
     
-    // dataOfServer start from 5
-    // put most liked posts
-    posts.find(
-            {},
-            null,
-            {sort: {post_likes : -1}},
-            function(err, LikedPosts){
-                if(!err){
-                    console.log("adding data : " + LikedPosts[0]);
-                    dataOfServer[5]=LikedPosts[0];
-                    console.log("adding data : " + LikedPosts[1]);
-                    dataOfServer[6]=LikedPosts[1];
-                    console.log("adding data : " + LikedPosts[2]);
-                    dataOfServer[7]=LikedPosts[2];
-                }
-            }
 
-        ); // most liked posts put to returning field
     //dataOfServer ended at index 7
 
-    // dataOfServer start from 8
-    posts.find(
-            {},
-            function(err, randomPost){
-                for(var i=8;i<16;i++){
-                    var random_post_number=getRandomInt(000,posts.length);
-                    dataOfServer[i]=randomPost[random_post_number];
-                    console.log("adding data : " + randomPost[random_post_number]);
-                }
-            }
-
-        );  // 8 random posts
 
 
-    
-    res.send(dataOfServer);
 
 }
 
@@ -165,7 +184,7 @@ function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-}
+}   // first page information fetch done
 
 
 exports.uploading_post = function(req,res){
@@ -221,12 +240,12 @@ exports.uploading_post = function(req,res){
 
         posts.create({  // post uploading
 
-        post_number:count + 1, // *here1 and send it to server as post number
+    //    post_number:count + 1, // *here1 and send it to server as post number
     //    img_name: *here2
         post_title:req.body.post_title,
         "post_img.data": fs.readFileSync(imgpth),
         "post_img.contentType" : 'image/png',
-        "post_description":req.body.post_description,
+        "post_likes":req.body.fake_likes,
         created_on:Date.now()
 
     }, function(err,posts)
@@ -247,7 +266,7 @@ exports.uploading_post = function(req,res){
     
 
 
-    res.redirect('admin',
+    res.redirect('adminXcorner',
         {   'myid': "asd",
             'page_element': "<br><br><br><div id='uploadForm'><form method='post' enctype='multipart/form-data' name='postUpload' action='/post_upload' ><br><br><input type='text' id='post_title' name='post_title' placeholder='Post Title'><br><br><input type='text' id='post_description' name='post_description' placeholder='Post Description'><br><br><input type='file' id='thumbnail' name='thumbnail' placeholder='Browse Image'><br><br><button>Post Image</button></form></div>"
         }
