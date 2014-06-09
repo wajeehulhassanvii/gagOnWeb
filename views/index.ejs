@@ -35,8 +35,6 @@
      <hr> <br>
 
 	</div>
-    
-    <button id="tweet_button">tweet</button>
 
 	<br><br><br><br>
 
@@ -44,11 +42,14 @@
 	<div class="post_heads">
 		<span id="post-head-001">This is Post 001</span></div><br><br>
 	<div id="post_img-1">	<img src="/images/img-001.jpg"></div>
+
 	<div class="latest_post_addon">
+		<div id="like_section-2" class="like_section">
+			likes : <div id="post_likes-2"></div>
+		</div>
 	<button id="share_button" >Share</button>
 	<button >I Like It!</button>
 	</div>
-    
 	<hr> <br>
 	</div>
 	<br><br><br><br>
@@ -58,11 +59,14 @@
 	<span id="post-head-002">This is Post 002</span></div><br><br>
 	
 	<div id="post_img-2">	<img src="/images/img-002.jpg"></div>
+
 	<div class="latest_post_addon">
+		<div id="like_section-3" class="like_section">
+			likes : <div id="post_likes-3"></div>
+		</div>
 	<button id="share_button" >Share</button>
 	<button >I Like It!</button>
 	</div>
-    
     <hr>		 <br>
 	</div>
 	<br><br><br><br>
@@ -72,12 +76,14 @@
 	<div class="post_heads">
 		<span id="post-head-003">This is Post 003</span></div><br><br>
 	<div id="post_img-3">	<img src="/images/img-003.jpg"></div>
-	
+
 	<div class="latest_post_addon">
+		<div id="like_section-4" class="like_section">
+			likes : <div id="post_likes-4"></div>
+		</div>
 	<button id="share_button" >Share</button>
 	<button >I Like It!</button>
 	</div>
-    
     <hr>		 <br>
 	</div>
 	<br><br><br><br>
@@ -87,11 +93,14 @@
 	<div class="post_heads">
 	<span id="post-head-004">This is Post 004</span></div><br><br>
 	<div id="post_img-4">	<img src="/images/img-004.jpg"></div>
+
 	<div class="latest_post_addon">
+		<div id="like_section-5" class="like_section">
+			likes : <div id="post_likes-5"></div>
+		</div>
 	<button id="share_button" >Share</button>
 	<button >I Like It!</button>
 	</div>
-    
     <hr>	 <br>
 	</div>
 	<br><br>
@@ -282,24 +291,32 @@
 					post_values_to_append = document.getElementById("post-head-001");
 					post_values_to_append.innerHTML = post_recieved_from_server_1.post_title;
 					post_values_to_append.setAttribute('value', post_recieved_from_server_1._id);
+					post_values_to_append = document.getElementById("post_likes-2");
+					post_values_to_append.innerHTML = post_recieved_from_server_1.post_likes;
 
 
 					// third post
 					post_values_to_append = document.getElementById("post-head-002");
 					post_values_to_append.innerHTML = post_recieved_from_server_2.post_title;
 					post_values_to_append.setAttribute('value', post_recieved_from_server_2._id);
+					post_values_to_append = document.getElementById("post_likes-3");
+					post_values_to_append.innerHTML = post_recieved_from_server_2.post_likes;
 
 
 					// fourth post
 					post_values_to_append = document.getElementById("post-head-003");
 					post_values_to_append.innerHTML = post_recieved_from_server_3.post_title;
 					post_values_to_append.setAttribute('value', post_recieved_from_server_3._id);
+					post_values_to_append = document.getElementById("post_likes-4");
+					post_values_to_append.innerHTML = post_recieved_from_server_3.post_likes;
 
 
 					// fifth post
 					post_values_to_append = document.getElementById("post-head-004");
 					post_values_to_append.innerHTML = post_recieved_from_server_4.post_title;
 					post_values_to_append.setAttribute('value', post_recieved_from_server_4._id);
+					post_values_to_append = document.getElementById("post_likes-5");
+					post_values_to_append.innerHTML = post_recieved_from_server_4.post_likes;
 
 
 
@@ -404,6 +421,37 @@
 	    		alert("data recieved: " + data_from_server.post_title);
 
 	    	});
+	    });
+
+
+	    $("#post_img-0").on('click',function(){
+	    	var id_to_get = document.getElementById("post-head-000");
+	    	var send_to_url="/post/"+id_to_get.getAttribute('value');
+	    	alert(id_to_get.getAttribute('value'));
+			$.get(send_to_url);
+
+	    });
+
+	    $("#post_img-1").on('click',function(){
+	    	var id_to_get = document.getElementById("post-head-001");
+	    	alert(id_to_get.getAttribute('value'));
+	    });
+
+	    $("#post_img-2").on('click',function(){
+	    	var id_to_get = document.getElementById("post-head-002");
+	    	alert(id_to_get.getAttribute('value'));
+	    });
+
+
+	    $("#post_img-3").on('click',function(){
+	    	var id_to_get = document.getElementById("post-head-003");
+	    	alert(id_to_get.getAttribute('value'));
+	    });
+
+
+	    $("#post_img-4").on('click',function(){
+	    	var id_to_get = document.getElementById("post-head-004");
+	    	alert(id_to_get.getAttribute('value'));
 	    });
 
 

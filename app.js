@@ -43,6 +43,8 @@ if ('development' == app.get('env')) {
 
 
 
+
+app.get("/post/:myId", db.post_selected);
 app.get("/page_first_visit",db.page_first_visit);
 app.get("/random_next",db.randomize_post);
 app.get('post_tweet',db.tweet);

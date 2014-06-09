@@ -179,13 +179,35 @@ exports.randomize_post = function(req,res){
 
 
 
-
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 }   // first page information fetch done
 
+
+exports.post_selected = function(req, res){
+console.log("in the routes, checking parameter :");
+var recievedPostId= req.params.myId;
+    posts.findOne({'_id':recievedPostId},function(err, myData){
+        console.log("post to send");
+        console.log(myData);
+   
+   
+
+    });
+
+
+
+    // res.redirect('showPost',
+    //     {   'myid': recievedPostId,
+    //         'page_element': "<br><br><br><div id='uploadForm'><form method='post' enctype='multipart/form-data' name='postUpload' action='/post_upload' ><br><br><input type='text' id='post_title' name='post_title' placeholder='Post Title'><br><br><input type='text' id='post_description' name='post_description' placeholder='Post Description'><br><br><input type='file' id='thumbnail' name='thumbnail' placeholder='Browse Image'><br><br><button>Post Image</button></form></div>"
+    //     }
+    //  ,function(){
+    //     console.log('redirecting to showPost');
+    // });
+
+}
 
 exports.uploading_post = function(req,res){
    var fs = require('fs');

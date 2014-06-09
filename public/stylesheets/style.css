@@ -11,15 +11,18 @@ background-color: rgb(221, 81, 81);
 border-radius: 25px;
 }
 .latest_post_addon{
+	box-decoration-break: inline;
 	text-decoration: inline;
-	height:26px;
+	padding-bottom: 5px;
 	background-color: #E74C3C;
 }
 
 .like_section{
 text-decoration: inline;
 }
-
+#like_selection-{
+	text-decoration: inline;
+}
 .post_heads_total{
 	background-color: #1ABC9C;
 	border-radius: 35px;
