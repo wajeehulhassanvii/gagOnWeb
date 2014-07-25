@@ -51,13 +51,18 @@ font-size: 35px;
 	font-size: 20px;
 
 }
-#random_prev{
+#randomize_post{
+float: center;
+}
+#top3_prev{
 float: left;
 }
-#random_next{
-float: right;
+#top3_next{
+float:right;
 }
-
+#top3_nav{
+	width: 80%;
+}
 
 #fun_posts_list{
 

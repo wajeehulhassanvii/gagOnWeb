@@ -170,6 +170,9 @@
 		<div id="top3_post-3">
 			<span id="top3_post-head-002">This is Post 000</span><br>
 		<div id="top3_post_img-0"></div>	<img src="/images/img-003.jpg">	<hr>	 <br>
+		</div><br>
+		<div id="top3_nav">
+		<button id="top3_prev">PREV</button> <button id="top3_next">NEXT</button>
 		</div>
 	</div>
 
@@ -184,8 +187,7 @@
 			<span id="random_post-nav-head">This is a Random post nav</span><br>
 		<div id="random_post_img-nav"></div>	<img id="random_post_nav-img" src="/images/img-008.jpg">	
 		<div id="random_nav">
-		<button id="random_prev">prev</button>
-		<button id="random_next">next</button> <hr>
+		<button id="randomize_post">Randomize Post</button> <hr>
 		</div>	
 		<br>
 		</div>
@@ -275,6 +277,8 @@
 	    			post_recieved_from_server_14=JSON.parse(post_recieved_from_server_14);
 	    			post_recieved_from_server_15=JSON.parse(post_recieved_from_server_15);
 
+
+	    			alert("fetching and conversion done");
 
 	    			// appending values for latest5 posts
 	    			//first post
@@ -407,21 +411,38 @@
 	    });
 
 
-	    $("#random_next").on("click",function(){
-	    	$.get("/random_next",function(data){
+
+	    // Randomize POST starts here
+	    $("#randomize_post").on("click",function(){
+
+	    	$.get("/random_next").done(function(data){
 	    		var data_from_server=JSON.stringify(data);
 	    		data_from_server=JSON.parse(data_from_server);
-
-	    		//$("#").val(data_from_server.post_title);
-
-
 				var change_random_post_head = document.getElementById("random_post-nav-head");
-				change_random_post_head.innerHTML = data_from_server.post_title;
+	    		change_random_post_head.innerHTML=data_from_server.post_title;
 
 	    		alert("data recieved: " + data_from_server.post_title);
 
 	    	});
-	    });
+
+
+
+	    	// Ajax GET request
+	   //  	$.get("/random_next",function(data){
+	   //  		var data_from_server=JSON.stringify(data);
+	   //  		data_from_server=JSON.parse(data_from_server);
+
+	   //  		//$("#").val(data_from_server.post_title);
+
+
+				// var change_random_post_head = document.getElementById("random_post-nav-head");
+				// change_random_post_head.innerHTML = data_from_server.post_title;
+
+	   //  		alert("data recieved: " + data_from_server.post_title);
+
+	   //  	});
+
+	    });	// Randomize POST generation Ends HERE
 
 
 	    $("#post_img-0").on('click',function(){

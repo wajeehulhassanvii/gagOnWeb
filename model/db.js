@@ -152,25 +152,36 @@ exports.page_first_visit = function (req,res){
 
     //dataOfServer ended at index 7
 
-
-
-
 }
 
 
-// randomize the random post selection
+// // randomize the random post selection
+// exports.randomize_post = function(req,res){
+ 
+//    posts.count({},function(err,maxCount){
+//     console.log("max count is : " + maxCount );
+//    // var random_post_number = Math.floor(Math.random() * maxCount);
+//         posts.findOne(
+//             {post_number:3},
+//             function(err,random_post_to_return){
+//                 if(!err){
+//                    console.log("value is : " + random_post_to_return);
+//                    res.send(random_post_to_return); 
+//                 }
+//             }
+//             )
+//     })
+
 exports.randomize_post = function(req,res){
  
-   var random_post_number=0;
    posts.count({},function(err,maxCount){
     console.log("max count is : " + maxCount );
-    random_post_number=getRandomInt(000,maxCount-1);
-        posts.findOne(
-            {post_number:random_post_number},
+    var random_post_number = Math.floor(Math.random() * maxCount);
+        posts.find(
             function(err,random_post_to_return){
                 if(!err){
                    console.log("value is : " + random_post_to_return);
-                   res.send(random_post_to_return); 
+                   res.send(random_post_to_return[random_post_number]); 
                 }
             }
             )
